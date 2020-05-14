@@ -3,7 +3,7 @@
  
 
 #include <iostream>
-#include <fstream>
+
 #include <vector>
 # include <string>
 #include<cstring>
@@ -13,7 +13,7 @@
 #include <sstream>
 #include <boost/asio.hpp>
 #include <boost/asio/deadline_timer.hpp>
-#include <ctime>
+
 #include <boost/crc.hpp>      // for boost::crc_basic, boost::crc_optimal
 #include <boost/cstdint.hpp>  // for boost::uint16_t
 #include <algorithm>  // for std::for_each
@@ -23,11 +23,10 @@ using boost::asio::ip::tcp;
 using namespace boost::asio;
 using ip::tcp;
 using std::string;
-using std::cout;
-using std::endl;
 
 
-string hexStr(vector<uint8_t> vect)
+
+string hextostr(vector<uint8_t> vect)
 {
     int len = vect.size();
    
@@ -157,7 +156,7 @@ int main()
 
         //  function to calculate hex values of vector packet
         cout << "packet" << " " << index << " " << "is :" << endl;
-        string c = hexStr(vect);
+        string c = hextostr(vect);
         cout << "The hex value of the string is :" << c << endl;
 
 
