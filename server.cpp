@@ -1,6 +1,6 @@
 
 //Muhammad Bilal 
- 
+
 
 #include <iostream>
 
@@ -29,27 +29,27 @@ using std::string;
 string hextostr(vector<uint8_t> vect)
 {
     int len = vect.size();
-   
+
     std::stringstream ss;
     ss << std::hex;
 
-   
+
     for (int i = 0; i < len; i++)
         ss << std::setw(2) << std::setfill('0') << (int)vect[i] << " ";
     return ss.str();
 
 }
-    void func1(vector<uint8_t>& vect, int value) {
+void func1(vector<uint8_t>& vect, int value) {
     unsigned char sizelower = value & 0xff;
     unsigned char sizeupper = (value >> 8) & 0xff;
-   // cout << "size lower byt" << " " << sizelower << " " << "size upper byt" << " " << sizeupper << endl;
+    // cout << "size lower byt" << " " << sizelower << " " << "size upper byt" << " " << sizeupper << endl;
 
 
-  
+
     vect.push_back(sizelower);
     vect.push_back(sizeupper);
-   
-    
+
+
 
 
 }
@@ -75,33 +75,33 @@ int main()
     // Create an empty vector
     std::vector<std::uint8_t> vect;
 
-    // calculate size from whole vector
+   
     //  vector string for data
-    std::vector<std::string> data = { "JKL", "alpha", "beta", "gamma" };
+    std::vector<std::string> data = { "alpha", "beta", "gamma" };
     //int index; // Counter variable
     auto size = data.size();
-    cout << "size of data string is:" << size << endl;
+    cout << "Size of Data String is:" << size << endl;
 
-    // loop to update hex values for each packet in vector
+    // loop to create hex values of data strings
     for (int index = 0; index < size; index++)
 
     {
         vect.clear();
-        // append vector with header marker
+        // append vector with header 
         vect.push_back(ahead);
-        //print out each string in vector data
+        //print out each string of vector data
         std::cout << "data string is:" << data[index] << '\n';
 
-        // caclulating size of whole packet
+        // caclulate the size of the packet
         std::string s = data[index];
         // packet size excluding data string size
         int pacsize = 6;
         auto size1 = data[index].size() + pacsize;
         cout << "packet size including string is:" << " " << size1 << endl;
-        // size lower and upper byte
+       
         int hsize = data[index].size() + 6;
 
-         func1(vect, hsize);
+        func1(vect, hsize);
         //vector<uint8_t> vect = func1(vect,hsize);
         //////////////////common size part///////////////////
               // appending upper and lower values of size
@@ -115,13 +115,13 @@ int main()
 
         /////////////////////////////////////
 
-        // insert string byte by byte in empty vector
+        // inserting string byte by byte
         std::vector<std::uint8_t>::iterator it;
         it = vect.begin();
         vect.insert(it + 3, data[index].begin(), data[index].end());
 
-        // CRC
-        std::uint8_t* a = &vect[1]; // this is just pointer excluding header marker 02
+        // CRC calculation
+        std::uint8_t* a = &vect[1]; 
         std::size_t const    data_len = vect.size() - 1;
         cout << "length of crc data : " << data_len << endl;
         // Simulate CRC-CCITT
@@ -132,7 +132,7 @@ int main()
 
 
 
-          func1(vect, crcvalue);
+        func1(vect, crcvalue);
 
 
 
@@ -154,14 +154,13 @@ int main()
 
 
 
-        //  function to calculate hex values of vector packet
+     
         cout << "packet" << " " << index << " " << "is :" << endl;
         string c = hextostr(vect);
         cout << "The hex value of the string is :" << c << endl;
 
 
     }
-
 
 
 
